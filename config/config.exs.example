@@ -1,0 +1,3 @@
+use Mix.Config
+
+config :yandex_cloud, cloud_api_key: ""
