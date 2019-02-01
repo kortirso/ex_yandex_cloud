@@ -79,10 +79,10 @@ Or you can add folder_id param to each request.
 
 ### Supported languages
 
-Request for getting list of supported languages is #langs.
+Request for getting list of supported languages is #languages.
 
 ```elixir
-YandexCloud.Translate.langs([iam_token: ""])
+YandexCloud.Translate.languages([iam_token: ""])
 ```
 
 #### Options
@@ -112,6 +112,7 @@ Request for translating text is #translate.
 ```elixir
 YandexCloud.Translate.translate([iam_token: "", text: "Hello", target: "ru"])
 ```
+
 #### Options
 
     iam_token - IAM-token, required

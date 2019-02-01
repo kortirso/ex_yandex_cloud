@@ -8,7 +8,7 @@ defmodule YandexCloud.TranslateTest do
   end
 
   test "request for getting languages with invalid key" do
-    {:error, %{"error_message" => error_message}} = Translate.langs([iam_token: "1"])
+    {:error, %{"error_message" => error_message}} = Translate.languages([iam_token: "1"])
 
     assert error_message == "rpc error: code = Unauthenticated desc = Unable to parse the signed token"
   end
@@ -26,7 +26,7 @@ defmodule YandexCloud.TranslateTest do
   end
 
   test "request for getting languages", state do
-    {:ok, %{"languages" => languages}} = Translate.langs([iam_token: state[:iam_token]])
+    {:ok, %{"languages" => languages}} = Translate.languages([iam_token: state[:iam_token]])
 
     assert is_list(languages) == true
   end

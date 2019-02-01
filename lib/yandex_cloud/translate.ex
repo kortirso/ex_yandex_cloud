@@ -10,7 +10,7 @@ defmodule YandexCloud.Translate do
 
   ## Example
 
-      iex> YandexCloud.Translate.langs([iam_token: ""])
+      iex> YandexCloud.Translate.languages([iam_token: ""])
       {:ok, %{"languages" => [%{"language" => "az"}, %{...}, ...]}}
 
   ### Options
@@ -19,9 +19,9 @@ defmodule YandexCloud.Translate do
       folder_id - folder ID of your account at YandexCloud, optional
 
   """
-  @spec langs(keyword()) :: {:ok, %{}}
+  @spec languages(keyword()) :: {:ok, %{}}
 
-  def langs(options) when is_list(options), do: call("languages", options)
+  def languages(options) when is_list(options), do: call("languages", options)
 
   @doc """
   Detect language for text.
