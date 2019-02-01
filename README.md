@@ -10,7 +10,7 @@ by adding `yandex_cloud` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:yandex_cloud, "~> 0.1.0"}
+    {:yandex_cloud, "~> 0.2.0"}
   ]
 end
 ```
