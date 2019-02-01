@@ -35,7 +35,7 @@ config :yandex_cloud, cloud_api_key: "API_KEY"
 
 ## Usage
 
-### Get IAM-token for cloud API access
+## Get IAM-token for cloud API access
 
 Request for getting IAM-token for access to cloud API. Valid 12 hours.
 
@@ -60,6 +60,66 @@ YandexCloud.get_iam_token([oauth_token: "API_KEY"])
 # response with errors
 {:error, %{"code" => code, "details" => details, "message" => message}}
 ```
+
+## Translate service
+
+### Configuration
+
+For using Translate service you need additionally add FOLDER_ID.
+
+Instruction for getting FOLDER_ID is [here](https://cloud.yandex.com/docs/translate/concepts/auth)
+
+In config/config.exs, add:
+
+```elixir
+config :yandex_cloud, translate_folder_id: "FOLDER_ID"
+```
+
+Or you can add folder_id param to each request.
+
+### Supported languages
+
+Request for getting list of supported languages is #langs.
+
+```elixir
+YandexCloud.Translate.langs([iam_token: ""])
+```
+
+#### Options
+
+    iam_token - IAM-token, required
+    folder_id - folder ID of your account at Yandex.Cloud, optional
+
+### Detection
+
+Request for detecting language of text is #detect.
+
+```elixir
+YandexCloud.Translate.detect([iam_token: "", text: "Hello"])
+```
+
+#### Options
+
+    iam_token - IAM-token, required
+    folder_id - folder ID of your account at Yandex.Cloud, optional
+    text - text for detection, required
+    hint - list of possible languages, optional, example - "en,ru"
+
+### Translation
+
+Request for translating text is #translate.
+
+```elixir
+YandexCloud.Translate.translate([iam_token: "", text: "Hello", target: "ru"])
+```
+#### Options
+
+    iam_token - IAM-token, required
+    folder_id - folder ID of your account at Yandex.Cloud, optional
+    text - text for detection, required
+    source - source language, ISO 639-1 format (like "en"), optional
+    target - target language, ISO 639-1 format (like "ru"), required
+    format - text format, one of the [plain|html], default - plain, optional
 
 ## Contributing
 

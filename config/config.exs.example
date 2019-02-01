@@ -1,3 +1,4 @@
 use Mix.Config
 
 config :yandex_cloud, cloud_api_key: ""
+config :yandex_cloud, translate_folder_id: ""
