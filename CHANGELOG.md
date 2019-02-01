@@ -6,3 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 ### Added
+- YandexCloud.Auth module with token() function for getting IAM-token
+- tests
+
+### Modified
+- README
