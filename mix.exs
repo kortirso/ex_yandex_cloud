@@ -8,7 +8,7 @@ defmodule YandexCloud.MixProject do
   def project do
     [
       app: :yandex_cloud,
-      version: "0.3.1",
+      version: "0.3.2",
       elixir: "~> 1.7",
       description: @description,
       build_embedded: Mix.env == :prod,

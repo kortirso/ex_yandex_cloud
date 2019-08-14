@@ -10,7 +10,7 @@ by adding `yandex_cloud` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:yandex_cloud, "~> 0.3.1"}
+    {:yandex_cloud, "~> 0.3.2"}
   ]
 end
 ```
@@ -44,7 +44,7 @@ Request for getting IAM-token for access to cloud API. Valid 12 hours.
 YandexCloud.get_iam_token
 
 # or with key
-YandexCloud.get_iam_token([oauth_token: "API_KEY"])
+YandexCloud.get_iam_token(%{oauth_token: "API_KEY"})
 ```
 
 #### Options
@@ -58,7 +58,7 @@ YandexCloud.get_iam_token([oauth_token: "API_KEY"])
 {:ok, %{"iamToken" => iam_token}}
 
 # response with errors
-{:error, %{"code" => code, "details" => details, "message" => message}}
+{:error, %{"code" => code, "message" => message}}
 ```
 
 ## Translate service
@@ -82,7 +82,7 @@ Or you can add folder_id param to each request.
 Request for getting list of supported languages is #languages.
 
 ```elixir
-YandexCloud.Translate.languages([iam_token: ""])
+YandexCloud.Translate.languages(%{iam_token: ""})
 ```
 
 #### Options
@@ -95,7 +95,7 @@ YandexCloud.Translate.languages([iam_token: ""])
 Request for detecting language of text is #detect.
 
 ```elixir
-YandexCloud.Translate.detect([iam_token: "", text: "Hello"])
+YandexCloud.Translate.detect(%{iam_token: "", text: "Hello"})
 ```
 
 #### Options
@@ -110,7 +110,7 @@ YandexCloud.Translate.detect([iam_token: "", text: "Hello"])
 Request for translating text is #translate.
 
 ```elixir
-YandexCloud.Translate.translate([iam_token: "", text: "Hello", target: "ru"])
+YandexCloud.Translate.translate(%{iam_token: "", text: "Hello", target: "ru"})
 ```
 
 #### Options
