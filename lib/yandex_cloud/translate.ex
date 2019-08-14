@@ -10,7 +10,7 @@ defmodule YandexCloud.Translate do
 
   ## Example
 
-      iex> YandexCloud.Translate.languages([iam_token: ""])
+      iex> YandexCloud.Translate.languages(%{iam_token: ""})
       {:ok, %{"languages" => [%{"language" => "az"}, %{...}, ...]}}
 
   ### Options
@@ -19,16 +19,16 @@ defmodule YandexCloud.Translate do
       folder_id - folder ID of your account at YandexCloud, optional
 
   """
-  @spec languages(keyword()) :: {:ok, %{}}
+  @spec languages(map()) :: {:ok, %{}}
 
-  def languages(options) when is_list(options), do: call("languages", options)
+  def languages(%{} = options), do: call("languages", options)
 
   @doc """
   Detect language for text.
 
   ## Example
 
-      iex> YandexCloud.Translate.detect([iam_token: "", text: "Hello"])
+      iex> YandexCloud.Translate.detect(%{iam_token: "", text: "Hello"})
       {:ok, %{"language" => "en"}}
 
   ### Options
@@ -39,16 +39,16 @@ defmodule YandexCloud.Translate do
       hint - list of possible languages, optional, example - "en,ru"
 
   """
-  @spec detect(keyword()) :: {:ok, %{}}
+  @spec detect(map()) :: {:ok, %{}}
 
-  def detect(options) when is_list(options), do: call("detect", options)
+  def detect(%{} = options), do: call("detect", options)
 
   @doc """
   Translate word or phrase.
 
   ## Example
 
-      iex> YandexCloud.Translate.translate([iam_token: iam_token, text: "hello world", source: "en", target: "es"])
+      iex> YandexCloud.Translate.translate(%{iam_token: iam_token, text: "hello world", source: "en", target: "es"})
       {:ok, %{"translations" => [%{"text" => "hola mundo"}]}}
 
   ### Options
@@ -61,9 +61,9 @@ defmodule YandexCloud.Translate do
       format - text format, one of the [plain|html], default - plain, optional
 
   """
-  @spec translate(keyword()) :: {:ok, %{}}
+  @spec translate(map()) :: {:ok, %{}}
 
-  def translate(options) when is_list(options), do: call("translate", options)
+  def translate(%{} = options), do: call("translate", options)
 
   # perform request
   defp call(type, args) do
@@ -91,10 +91,15 @@ defmodule YandexCloud.Translate do
   # generate body for request
   defp body(args, type) do
     args
-    |> Keyword.put(:folderId, cloud_folder_id(args[:folder_id]))
+    |> Map.merge(%{folderId: cloud_folder_id(args[:folder_id])})
     |> Stream.filter(fn {key, _} -> Enum.member?(valid_args(type), key) end)
     |> Stream.map(fn {key, value} -> "#{key}=#{URI.encode_www_form(value)}" end)
     |> Enum.join("&")
+    #args
+    #|> Keyword.put(:folderId, cloud_folder_id(args[:folder_id]))
+    #|> Stream.filter(fn {key, _} -> Enum.member?(valid_args(type), key) end)
+    #|> Stream.map(fn {key, value} -> "#{key}=#{URI.encode_www_form(value)}" end)
+    #|> Enum.join("&")
   end
 
   # list with available options based on request type

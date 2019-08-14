@@ -15,23 +15,23 @@ defmodule YandexCloud.Auth do
       {:ok, %{"iamToken" => ""}}
 
   """
-  @spec token() :: {:ok, %{iamToken: String.t()}}
+  @spec token(none()) :: {:ok, %{iamToken: String.t()}}
 
-  def token, do: token([])
+  def token, do: token(%{oauth_token: nil})
 
   @doc """
   Get IAM-token for using it in requests to YandexCloud. Valid 12 hours.
 
   ## Examples
 
-      iex> YandexCloud.Auth.token([oauth_token: oauth_token])
+      iex> YandexCloud.Auth.token(%{oauth_token: oauth_token})
       {:ok, %{"iamToken" => ""}}
 
   """
-  @spec token(keyword()) :: {:ok, %{iamToken: String.t()}}
+  @spec token(map()) :: {:ok, %{iamToken: String.t()}}
 
-  def token(params) when is_list(params) do
-    params[:oauth_token]
+  def token(%{oauth_token: oauth_token}) do
+    oauth_token
     |> fetch_iam_token()
     |> parse()
   end

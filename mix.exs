@@ -29,6 +29,7 @@ defmodule YandexCloud.MixProject do
     [
       {:httpoison, "~> 1.4"},
       {:poison, "~> 3.1.0"},
+      {:mock, "~> 0.3.0", only: :test},
       {:ex_doc, "~> 0.19", only: :dev}
     ]
   end

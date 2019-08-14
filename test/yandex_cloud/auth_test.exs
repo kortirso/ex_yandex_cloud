@@ -3,10 +3,9 @@ defmodule YandexCloud.AuthTest do
   alias YandexCloud.Auth
 
   test "request for getting iam_token with invalid key" do
-    {:error, %{"code" => code, "details" => details, "message" => message}} = Auth.token([oauth_token: "12345"])
+    {:error, %{"code" => code, "message" => message}} = Auth.token(%{oauth_token: "12345"})
 
     assert code == 16
-    assert is_list(details) == true
     assert message == "Token is invalid or has expired."
   end
 

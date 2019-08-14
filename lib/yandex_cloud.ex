@@ -13,11 +13,11 @@ defmodule YandexCloud do
       iex> YandexCloud.get_iam_token
       {:ok, %{"iamToken" => ""}}
 
-      iex> YandexCloud.get_iam_token([oauth_token: "12345"])
+      iex> YandexCloud.get_iam_token(%{oauth_token: "12345"})
       {:ok, %{"iamToken" => ""}}
 
   """
 
   def get_iam_token, do: Auth.token()
-  def get_iam_token(params) when is_list(params), do: Auth.token(params)
+  def get_iam_token(%{} = params), do: Auth.token(params)
 end
